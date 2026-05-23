@@ -1,0 +1,5 @@
+- [ ] Update text colors in frontend/src/pages/Income.jsx to text-slate-900 dark:text-white for appropriate contrast on light gradient background
+- [ ] Update text colors in frontend/src/pages/Expense.jsx to text-slate-900 dark:text-white for appropriate contrast on light gradient background
+- [ ] Update text colors in frontend/src/pages/Dashboard/DashboardHome.jsx to text-slate-900 dark:text-white for appropriate contrast on light gradient background
+- [ ] Add gradient background and update text colors in frontend/src/pages/Customers.jsx to match other pages
+- [ ] Update text colors in frontend/src/pages/CredentialsPage.jsx to text-slate-900 dark:text-white for appropriate contrast on light gradient background
