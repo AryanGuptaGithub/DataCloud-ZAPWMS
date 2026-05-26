@@ -1,4 +1,4 @@
-// src/pages/Auth/Register.jsx
+// src/pages/Auth/Register.jsx — light theme
 import { useState, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "@/lib/axios";
@@ -6,9 +6,8 @@ import { toast } from "sonner";
 import { Input }  from "@/components/ui/input";
 import { Label }  from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Eye, EyeOff, Mail, Lock, User, RefreshCw, ArrowRight, KeyRound } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, User, RefreshCw, ArrowRight, KeyRound, CheckCircle2 } from "lucide-react";
 
-/* ── password strength ───────────────────── */
 function pwdStrength(pwd) {
   if (!pwd) return { score: 0, label: "", bar: "" };
   let s = 0;
@@ -30,9 +29,7 @@ function pwdStrength(pwd) {
 
 export default function Register() {
   const navigate = useNavigate();
-  const [form, setForm] = useState({
-    name: "", email: "", password: "", confirmPassword: "",
-  });
+  const [form, setForm] = useState({ name: "", email: "", password: "", confirmPassword: "" });
   const [showPass,  setShowPass]  = useState(false);
   const [loading,   setLoading]   = useState(false);
   const [errors,    setErrors]    = useState({});
@@ -46,11 +43,11 @@ export default function Register() {
 
   const validate = () => {
     const e = {};
-    if (!form.name.trim())                       e.name            = "Full name is required";
-    if (!form.email.trim())                      e.email           = "Email is required";
-    if (!form.password)                          e.password        = "Password is required";
-    if (form.password && form.password.length < 8) e.password      = "Password must be at least 8 characters";
-    if (form.password !== form.confirmPassword)  e.confirmPassword = "Passwords don't match";
+    if (!form.name.trim())                         e.name            = "Full name is required";
+    if (!form.email.trim())                        e.email           = "Email is required";
+    if (!form.password)                            e.password        = "Password is required";
+    if (form.password && form.password.length < 8) e.password        = "Password must be at least 8 characters";
+    if (form.password !== form.confirmPassword)    e.confirmPassword = "Passwords don't match";
     setErrors(e);
     return !Object.keys(e).length;
   };
@@ -76,20 +73,18 @@ export default function Register() {
   };
 
   return (
-    <div className="flex min-h-screen">
-
-      {/* ── Left branding panel ── */}
-      <div className="hidden md:flex w-1/2 bg-gray-950 flex-col items-center justify-center p-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-violet-600/20 rounded-full blur-3xl" />
+    <div className="flex min-h-screen bg-gray-50">
+      {/* Left branding panel */}
+      <div className="hidden md:flex w-1/2 bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-700 flex-col items-center justify-center p-12 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
 
         <div className="relative z-10 text-center max-w-xs">
-          <div className="w-14 h-14 rounded-2xl bg-violet-600 flex items-center justify-center mx-auto mb-6">
-            <KeyRound className="w-7 h-7 text-white" />
+          <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center mx-auto mb-6 border border-white/30">
+            <KeyRound className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-3xl font-bold text-white mb-3">Get started free</h1>
-          <p className="text-gray-400 text-sm leading-relaxed">
+          <p className="text-indigo-200 text-sm leading-relaxed">
             Join ZapDataCloud and take control of your business data in minutes.
           </p>
 
@@ -101,103 +96,72 @@ export default function Register() {
               "Works on mobile & desktop",
             ].map((item) => (
               <div key={item} className="flex items-center gap-2.5">
-                <span className="w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                </span>
-                <span className="text-xs text-gray-400">{item}</span>
+                <CheckCircle2 className="w-4 h-4 text-emerald-300 shrink-0" />
+                <span className="text-xs text-indigo-200">{item}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* ── Right form panel ── */}
-      <div className="flex flex-1 items-center justify-center p-6 bg-gray-50 dark:bg-gray-950">
-        <div className="w-full max-w-sm">
-
-          {/* Logo on mobile */}
+      {/* Right form panel */}
+      <div className="flex flex-1 items-center justify-center p-6 bg-white overflow-y-auto">
+        <div className="w-full max-w-sm py-8">
           <div className="flex items-center gap-2 mb-8 md:hidden">
             <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center">
               <KeyRound className="w-4 h-4 text-white" />
             </div>
-            <span className="font-bold text-gray-900 dark:text-white">ZapDataCloud</span>
+            <span className="font-bold text-gray-900">ZapDataCloud</span>
           </div>
 
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Create account</h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">
-            Fill in the details below to get started
-          </p>
+          <h2 className="text-2xl font-bold text-gray-900 mb-1">Create account</h2>
+          <p className="text-sm text-gray-500 mb-8">Fill in the details below to get started</p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-
             {/* Name */}
             <div className="space-y-1.5">
-              <Label className="text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                Full Name
-              </Label>
+              <Label className="text-xs font-medium text-gray-600 uppercase tracking-wider">Full Name</Label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <Input
-                  type="text"
-                  value={form.name}
-                  onChange={(e) => set("name", e.target.value)}
-                  placeholder="John Doe"
-                  autoComplete="name"
-                  className={`pl-9 h-10 text-sm ${errors.name ? "border-red-400 focus-visible:ring-red-400" : "border-gray-200 dark:border-gray-700"}`}
-                />
+                <Input type="text" value={form.name} onChange={(e) => set("name", e.target.value)}
+                  placeholder="John Doe" autoComplete="name"
+                  className={`pl-9 h-10 text-sm bg-gray-50 border-gray-200 focus:bg-white ${errors.name ? "border-red-400 focus-visible:ring-red-400" : ""}`} />
               </div>
               {errors.name && <p className="text-xs text-red-500">{errors.name}</p>}
             </div>
 
             {/* Email */}
             <div className="space-y-1.5">
-              <Label className="text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                Email
-              </Label>
+              <Label className="text-xs font-medium text-gray-600 uppercase tracking-wider">Email</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <Input
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => set("email", e.target.value)}
-                  placeholder="you@company.com"
-                  autoComplete="email"
-                  className={`pl-9 h-10 text-sm ${errors.email ? "border-red-400 focus-visible:ring-red-400" : "border-gray-200 dark:border-gray-700"}`}
-                />
+                <Input type="email" value={form.email} onChange={(e) => set("email", e.target.value)}
+                  placeholder="you@company.com" autoComplete="email"
+                  className={`pl-9 h-10 text-sm bg-gray-50 border-gray-200 focus:bg-white ${errors.email ? "border-red-400 focus-visible:ring-red-400" : ""}`} />
               </div>
               {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
             </div>
 
             {/* Password */}
             <div className="space-y-1.5">
-              <Label className="text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                Password
-              </Label>
+              <Label className="text-xs font-medium text-gray-600 uppercase tracking-wider">Password</Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <Input
-                  type={showPass ? "text" : "password"}
-                  value={form.password}
-                  onChange={(e) => set("password", e.target.value)}
-                  placeholder="••••••••••"
+                <Input type={showPass ? "text" : "password"} value={form.password}
+                  onChange={(e) => set("password", e.target.value)} placeholder="••••••••••"
                   autoComplete="new-password"
-                  className={`pl-9 pr-9 h-10 text-sm ${errors.password ? "border-red-400 focus-visible:ring-red-400" : "border-gray-200 dark:border-gray-700"}`}
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPass((v) => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-                >
+                  className={`pl-9 pr-9 h-10 text-sm bg-gray-50 border-gray-200 focus:bg-white ${errors.password ? "border-red-400 focus-visible:ring-red-400" : ""}`} />
+                <button type="button" onClick={() => setShowPass((v) => !v)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
                   {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
               {errors.password && <p className="text-xs text-red-500">{errors.password}</p>}
-              {/* Strength meter */}
               {form.password && (
                 <div className="space-y-1 pt-0.5">
                   <div className="flex gap-0.5">
                     {[0,1,2,3,4].map((i) => (
-                      <div key={i} className={`h-1 flex-1 rounded-full transition-colors ${i < pwd.score ? pwd.bar : "bg-gray-200 dark:bg-gray-700"}`} />
+                      <div key={i} className={`h-1 flex-1 rounded-full transition-colors ${i < pwd.score ? pwd.bar : "bg-gray-200"}`} />
                     ))}
                   </div>
                   <p className="text-xs text-gray-400">{pwd.label}</p>
@@ -207,24 +171,19 @@ export default function Register() {
 
             {/* Confirm password */}
             <div className="space-y-1.5">
-              <Label className="text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                Confirm Password
-              </Label>
+              <Label className="text-xs font-medium text-gray-600 uppercase tracking-wider">Confirm Password</Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <Input
-                  type={showPass ? "text" : "password"}
-                  value={form.confirmPassword}
-                  onChange={(e) => set("confirmPassword", e.target.value)}
-                  placeholder="••••••••••"
+                <Input type={showPass ? "text" : "password"} value={form.confirmPassword}
+                  onChange={(e) => set("confirmPassword", e.target.value)} placeholder="••••••••••"
                   autoComplete="new-password"
-                  className={`pl-9 h-10 text-sm ${errors.confirmPassword ? "border-red-400 focus-visible:ring-red-400" : "border-gray-200 dark:border-gray-700"}`}
-                />
+                  className={`pl-9 h-10 text-sm bg-gray-50 border-gray-200 focus:bg-white ${errors.confirmPassword ? "border-red-400 focus-visible:ring-red-400" : ""}`} />
               </div>
               {errors.confirmPassword && <p className="text-xs text-red-500">{errors.confirmPassword}</p>}
-              {/* Match indicator */}
               {form.confirmPassword && !errors.confirmPassword && form.password === form.confirmPassword && (
-                <p className="text-xs text-emerald-600 font-medium">Passwords match ✓</p>
+                <p className="text-xs text-emerald-600 font-medium flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3" />Passwords match
+                </p>
               )}
             </div>
 
@@ -237,11 +196,9 @@ export default function Register() {
             </Button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
+          <p className="text-center text-sm text-gray-500 mt-6">
             Already have an account?{" "}
-            <Link to="/login" className="text-violet-600 hover:text-violet-700 dark:text-violet-400 font-medium">
-              Sign in
-            </Link>
+            <Link to="/login" className="text-violet-600 hover:text-violet-700 font-medium">Sign in</Link>
           </p>
         </div>
       </div>

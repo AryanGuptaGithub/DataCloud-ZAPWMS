@@ -13,11 +13,11 @@ import {
 
 /* ── category config ─────────────────────── */
 const CATEGORIES = [
-  { value: "premium",  label: "Premium",  cls: "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800"  },
-  { value: "regular",  label: "Regular",  cls: "bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/40 dark:text-sky-300 dark:border-sky-800"              },
-  { value: "lead",     label: "Lead",     cls: "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800" },
-  { value: "inactive", label: "Inactive", cls: "bg-gray-50 text-gray-600 border-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700"           },
-  { value: "prospect", label: "Prospect", cls: "bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-950/40 dark:text-violet-300 dark:border-violet-800" },
+  { value: "premium",  label: "Premium",  cls: "bg-amber-50 text-amber-700 border-amber-200"  },
+  { value: "regular",  label: "Regular",  cls: "bg-sky-50 text-sky-700 border-sky-200"              },
+  { value: "lead",     label: "Lead",     cls: "bg-emerald-50 text-emerald-700 border-emerald-200" },
+  { value: "inactive", label: "Inactive", cls: "bg-gray-50 text-gray-600 border-gray-200"           },
+  { value: "prospect", label: "Prospect", cls: "bg-violet-50 text-violet-700 border-violet-200" },
 ];
 
 const EMPTY = {
@@ -110,42 +110,42 @@ export default function ClientForm({ initialData, onSuccess, onCancel }) {
             <Input id="clientName" value={form.clientName}
               onChange={(e) => set("clientName", e.target.value)}
               placeholder="John Doe"
-              className={`h-8 text-sm ${errors.clientName ? "border-red-400" : "border-gray-200 dark:border-gray-700"}`} />
+              className={`h-8 text-sm ${errors.clientName ? "border-red-400" : "border-gray-200"}`} />
           </Field>
           <Field id="companyName" label="Company" icon={Building2} required>
             <Input id="companyName" value={form.companyName}
               onChange={(e) => set("companyName", e.target.value)}
               placeholder="Acme Inc."
-              className={`h-8 text-sm ${errors.companyName ? "border-red-400" : "border-gray-200 dark:border-gray-700"}`} />
+              className={`h-8 text-sm ${errors.companyName ? "border-red-400" : "border-gray-200"}`} />
           </Field>
           <Field id="clientDesignation" label="Designation" icon={User}>
             <Input id="clientDesignation" value={form.clientDesignation}
               onChange={(e) => set("clientDesignation", e.target.value)}
               placeholder="CEO, Manager..."
-              className="h-8 text-sm border-gray-200 dark:border-gray-700" />
+              className="h-8 text-sm border-gray-200" />
           </Field>
           <Field id="city" label="City" icon={MapPin}>
             <Input id="city" value={form.city}
               onChange={(e) => set("city", e.target.value)}
               placeholder="Mumbai"
-              className="h-8 text-sm border-gray-200 dark:border-gray-700" />
+              className="h-8 text-sm border-gray-200" />
           </Field>
           <Field id="companyAddress" label="Address" icon={MapPin}>
             <Input id="companyAddress" value={form.companyAddress}
               onChange={(e) => set("companyAddress", e.target.value)}
               placeholder="123 Business Park..."
-              className="h-8 text-sm border-gray-200 dark:border-gray-700" />
+              className="h-8 text-sm border-gray-200" />
           </Field>
           <Field id="gstin" label="GSTIN" icon={Hash}>
             <Input id="gstin" value={form.gstin}
               onChange={(e) => set("gstin", e.target.value)}
               placeholder="22AAAAA0000A1Z5"
-              className="h-8 text-sm border-gray-200 dark:border-gray-700" />
+              className="h-8 text-sm border-gray-200" />
           </Field>
         </div>
       </section>
 
-      <Separator className="bg-gray-100 dark:bg-gray-800" />
+      <Separator className="bg-gray-100" />
 
       {/* ── Contact ── */}
       <section className="space-y-4">
@@ -155,18 +155,18 @@ export default function ClientForm({ initialData, onSuccess, onCancel }) {
             <Input id="email" type="email" value={form.email}
               onChange={(e) => set("email", e.target.value)}
               placeholder="john@acme.com"
-              className="h-8 text-sm border-gray-200 dark:border-gray-700" />
+              className="h-8 text-sm border-gray-200" />
           </Field>
           <Field id="phone" label="Phone" icon={Phone}>
             <Input id="phone" value={form.phone}
               onChange={(e) => set("phone", e.target.value)}
               placeholder="+91 98765 43210"
-              className="h-8 text-sm border-gray-200 dark:border-gray-700" />
+              className="h-8 text-sm border-gray-200" />
           </Field>
         </div>
       </section>
 
-      <Separator className="bg-gray-100 dark:bg-gray-800" />
+      <Separator className="bg-gray-100" />
 
       {/* ── Category ── */}
       <section className="space-y-3">
@@ -177,14 +177,14 @@ export default function ClientForm({ initialData, onSuccess, onCancel }) {
               className={`px-3 py-1 rounded-full text-xs font-medium border transition-all
                 ${form.category === c.value
                   ? c.cls
-                  : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-500 hover:border-gray-300"}`}>
+                  : "bg-white border-gray-200 text-gray-500 hover:border-gray-300"}`}>
               {c.label}
             </button>
           ))}
         </div>
       </section>
 
-      <Separator className="bg-gray-100 dark:bg-gray-800" />
+      <Separator className="bg-gray-100" />
 
       {/* ── Tags ── */}
       <section className="space-y-3">
@@ -195,16 +195,16 @@ export default function ClientForm({ initialData, onSuccess, onCancel }) {
           <Input value={newTag} onChange={(e) => setNewTag(e.target.value)}
             onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addTag(); } }}
             placeholder="Add a tag and press Enter"
-            className="h-8 text-sm border-gray-200 dark:border-gray-700 flex-1" />
+            className="h-8 text-sm border-gray-200 flex-1" />
           <Button type="button" size="sm" onClick={addTag}
-            className="h-8 text-xs px-3 bg-gray-900 hover:bg-gray-800 dark:bg-white dark:text-gray-900 text-white">
+            className="h-8 text-xs px-3 bg-gray-900 hover:bg-gray-800 text-white">
             <Plus className="w-3.5 h-3.5" />
           </Button>
         </div>
         {form.tags.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {form.tags.map((t) => (
-              <span key={t} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700">
+              <span key={t} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-gray-100 text-gray-600 border border-gray-200">
                 {t}
                 <button type="button" onClick={() => removeTag(t)} className="text-gray-400 hover:text-red-500">
                   <X className="w-3 h-3" />
@@ -215,7 +215,7 @@ export default function ClientForm({ initialData, onSuccess, onCancel }) {
         )}
       </section>
 
-      <Separator className="bg-gray-100 dark:bg-gray-800" />
+      <Separator className="bg-gray-100" />
 
       {/* ── Notes ── */}
       <section className="space-y-2">
@@ -225,10 +225,10 @@ export default function ClientForm({ initialData, onSuccess, onCancel }) {
         <textarea rows={3} value={form.notes}
           onChange={(e) => set("notes", e.target.value)}
           placeholder="Client requirements, preferences, background..."
-          className="w-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm resize-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500" />
+          className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm resize-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500" />
       </section>
 
-      <Separator className="bg-gray-100 dark:bg-gray-800" />
+      <Separator className="bg-gray-100" />
 
       {/* ── Follow-up ── */}
       <section className="space-y-3">
@@ -239,13 +239,13 @@ export default function ClientForm({ initialData, onSuccess, onCancel }) {
           <Field id="followUpDate" label="Follow-up Date">
             <Input id="followUpDate" type="date" value={form.followUpDate}
               onChange={(e) => set("followUpDate", e.target.value)}
-              className="h-8 text-sm border-gray-200 dark:border-gray-700" />
+              className="h-8 text-sm border-gray-200" />
           </Field>
           <Field id="followUpNotes" label="Follow-up Notes">
             <Input id="followUpNotes" value={form.followUpNotes}
               onChange={(e) => set("followUpNotes", e.target.value)}
               placeholder="What to discuss..."
-              className="h-8 text-sm border-gray-200 dark:border-gray-700" />
+              className="h-8 text-sm border-gray-200" />
           </Field>
         </div>
       </section>
@@ -253,11 +253,11 @@ export default function ClientForm({ initialData, onSuccess, onCancel }) {
       {/* ── Actions ── */}
       <div className="flex justify-end gap-2 pt-1">
         <Button type="button" variant="outline" size="sm" onClick={onCancel} disabled={saving}
-          className="h-8 text-xs border-gray-200 dark:border-gray-700">
+          className="h-8 text-xs border-gray-200">
           Cancel
         </Button>
         <Button type="submit" size="sm" disabled={saving}
-          className="h-8 text-xs gap-1.5 bg-gray-900 hover:bg-gray-800 dark:bg-white dark:text-gray-900 text-white">
+          className="h-8 text-xs gap-1.5 bg-gray-900 hover:bg-gray-800 text-white">
           {saving && <RefreshCw className="w-3 h-3 animate-spin" />}
           {isEdit ? "Save Changes" : "Create Client"}
         </Button>

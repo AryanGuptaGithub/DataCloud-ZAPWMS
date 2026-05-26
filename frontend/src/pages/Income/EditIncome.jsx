@@ -27,7 +27,7 @@ export default function EditIncome() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="w-6 h-6 border-2 border-gray-300 border-t-emerald-600 rounded-full animate-spin" />
       </div>
     );

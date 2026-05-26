@@ -13,7 +13,7 @@ export default function App() {
         <LoadingProvider>
           <Toaster duration={1000} richColors position="top-right" />
 
-          <div className=" bg-slate-500 dark:bg-slate-900 min-h-screen">
+          <div className=" bg-slate-500 min-h-screen">
             {/* <Snowfall /> */}
             <Router />
           </div>

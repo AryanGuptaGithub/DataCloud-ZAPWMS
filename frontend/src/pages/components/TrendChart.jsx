@@ -42,8 +42,8 @@ export default function TrendChart({ records, color = "#10B981", label = "Total"
   const CustomTooltip = ({ active, payload, label: lbl }) => {
     if (!active || !payload?.length) return null;
     return (
-      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 shadow-lg text-xs">
-        <p className="font-semibold text-gray-700 dark:text-gray-300 mb-1">{payload[0]?.payload?.month}</p>
+      <div className="bg-white border border-gray-200 rounded-lg px-3 py-2 shadow-lg text-xs">
+        <p className="font-semibold text-gray-700 mb-1">{payload[0]?.payload?.month}</p>
         <p style={{ color }}>{label}: {fmt(payload[0]?.value ?? 0)}</p>
         <p className="text-gray-400">{payload[0]?.payload?.count} transaction{payload[0]?.payload?.count !== 1 ? "s" : ""}</p>
       </div>
@@ -51,8 +51,8 @@ export default function TrendChart({ records, color = "#10B981", label = "Total"
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-5">
-      <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">
+    <div className="bg-white border border-gray-100 rounded-xl p-5">
+      <p className="text-sm font-semibold text-gray-700 mb-4">
         Last 6 Months — {label}
       </p>
       <div className="h-56">

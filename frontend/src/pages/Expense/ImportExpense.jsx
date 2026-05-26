@@ -311,7 +311,7 @@ export default function ImportExpense() {
               variant="ghost"
               size="sm"
               onClick={() => navigate("/dashboard/expenses")}
-              className="gap-2 bg-gray-200 dark:bg-gray-800 border-gray-500"
+              className="gap-2 bg-gray-200 border-gray-500"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Expenses

@@ -54,18 +54,18 @@ const TABS = [
 
 function StatCard({ icon: Icon, label, value, sub, accent }) {
   const colors = {
-    red:    "bg-red-100 dark:bg-red-900/40 text-red-600",
-    orange: "bg-orange-100 dark:bg-orange-900/40 text-orange-600",
-    violet: "bg-violet-100 dark:bg-violet-900/40 text-violet-600",
-    sky:    "bg-sky-100 dark:bg-sky-900/40 text-sky-600",
+    red:    "bg-red-100 text-red-600",
+    orange: "bg-orange-100 text-orange-600",
+    violet: "bg-violet-100 text-violet-600",
+    sky:    "bg-sky-100 text-sky-600",
   };
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-4 flex items-center gap-3">
+    <div className="bg-white border border-gray-100 rounded-xl p-4 flex items-center gap-3">
       <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${colors[accent] ?? colors.red}`}>
         <Icon className="w-4 h-4" />
       </div>
       <div className="min-w-0">
-        <p className="text-xl font-bold text-gray-900 dark:text-white tabular-nums leading-none">{value}</p>
+        <p className="text-xl font-bold text-gray-900 tabular-nums leading-none">{value}</p>
         <p className="text-xs text-gray-500 mt-0.5 truncate">{label}</p>
         {sub && <p className="text-xs text-gray-400 truncate">{sub}</p>}
       </div>
@@ -194,24 +194,24 @@ export default function Expense() {
 
   /* ── render ── */
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 p-4 md:p-6 space-y-4">
+    <div className="min-h-screen bg-gray-50 p-4 md:p-6 space-y-4">
 
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-bold text-gray-900 dark:text-white">Expenses</h1>
+          <h1 className="text-xl font-bold text-gray-900">Expenses</h1>
           <p className="text-xs text-gray-500 mt-0.5">{stats.count} records · {INR(stats.total)} total</p>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
-          <Button variant="outline" size="sm" onClick={handleExport} className="h-8 text-xs gap-1.5 border-gray-200 dark:border-gray-700">
+          <Button variant="outline" size="sm" onClick={handleExport} className="h-8 text-xs gap-1.5 border-gray-200">
             <Download className="w-3.5 h-3.5" />Export
           </Button>
           <Link to="/dashboard/expenses/import">
-            <Button variant="outline" size="sm" className="h-8 text-xs gap-1.5 border-gray-200 dark:border-gray-700">
+            <Button variant="outline" size="sm" className="h-8 text-xs gap-1.5 border-gray-200">
               <Upload className="w-3.5 h-3.5" />Import
             </Button>
           </Link>
-          <Button variant="outline" size="sm" onClick={fetchExpenses} disabled={loading} className="h-8 text-xs border-gray-200 dark:border-gray-700">
+          <Button variant="outline" size="sm" onClick={fetchExpenses} disabled={loading} className="h-8 text-xs border-gray-200">
             <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
           </Button>
           <Link to="/dashboard/expenses/add">
@@ -234,13 +234,13 @@ export default function Expense() {
       <ExpenseChart expenses={expenses} />
 
       {/* Filters */}
-      <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl px-4 py-3 space-y-3">
+      <div className="bg-white border border-gray-100 rounded-xl px-4 py-3 space-y-3">
         <div className="flex flex-col sm:flex-row gap-2">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <Input value={search} onChange={(e) => setSearch(e.target.value)}
               placeholder="Search title, vendor, category..."
-              className="pl-9 h-8 text-sm border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800" />
+              className="pl-9 h-8 text-sm border-gray-200 bg-gray-50" />
             {search && (
               <button onClick={() => setSearch("")} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
                 <X className="w-3.5 h-3.5" />
@@ -249,8 +249,8 @@ export default function Expense() {
           </div>
           <div className="flex gap-2 flex-wrap">
             <Select value={dateRange} onValueChange={setDateRange}>
-              <SelectTrigger className="h-8 text-xs w-[130px] border-gray-200 dark:border-gray-700"><SelectValue /></SelectTrigger>
-              <SelectContent className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl px-4 py-3 space-y-3">
+              <SelectTrigger className="h-8 text-xs w-[130px] border-gray-200"><SelectValue /></SelectTrigger>
+              <SelectContent className="bg-white border border-gray-100 rounded-xl px-4 py-3 space-y-3">
                 <SelectItem value="all">All Time</SelectItem>
                 <SelectItem value="today">Today</SelectItem>
                 <SelectItem value="this-week">This Week</SelectItem>
@@ -259,14 +259,14 @@ export default function Expense() {
               </SelectContent>
             </Select>
             <Select value={catFilter} onValueChange={setCatFilter}>
-              <SelectTrigger className="h-8 text-xs w-[120px] border-gray-200 dark:border-gray-700"><SelectValue /></SelectTrigger>
-              <SelectContent className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl px-4 py-3 space-y-3">
+              <SelectTrigger className="h-8 text-xs w-[120px] border-gray-200"><SelectValue /></SelectTrigger>
+              <SelectContent className="bg-white border border-gray-100 rounded-xl px-4 py-3 space-y-3">
                 {categories.map((c) => <SelectItem key={c} value={c}>{c === "all" ? "All Categories" : c}</SelectItem>)}
               </SelectContent>
             </Select>
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="h-8 text-xs w-[130px] border-gray-200 dark:border-gray-700"><SelectValue /></SelectTrigger>
-              <SelectContent className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl px-4 py-3 space-y-3">
+              <SelectTrigger className="h-8 text-xs w-[130px] border-gray-200"><SelectValue /></SelectTrigger>
+              <SelectContent className="bg-white border border-gray-100 rounded-xl px-4 py-3 space-y-3">
                 <SelectItem value="date-desc">Newest first</SelectItem>
                 <SelectItem value="date-asc">Oldest first</SelectItem>
                 <SelectItem value="amount-desc">Highest amount</SelectItem>
@@ -275,8 +275,8 @@ export default function Expense() {
               </SelectContent>
             </Select>
             <Select value={String(perPage)} onValueChange={(v) => setPerPage(Number(v))}>
-              <SelectTrigger className="h-8 text-xs w-[70px] border-gray-200 dark:border-gray-700"><SelectValue /></SelectTrigger>
-              <SelectContent className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl px-4 py-3 space-y-3">
+              <SelectTrigger className="h-8 text-xs w-[70px] border-gray-200"><SelectValue /></SelectTrigger>
+              <SelectContent className="bg-white border border-gray-100 rounded-xl px-4 py-3 space-y-3">
                 {[10, 25, 50].map((n) => <SelectItem key={n} value={String(n)}>{n}</SelectItem>)}
               </SelectContent>
             </Select>
@@ -284,11 +284,11 @@ export default function Expense() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-0.5 border-b border-gray-100 dark:border-gray-800 -mx-4 px-4 overflow-x-auto">
+        <div className="flex gap-0.5 border-b border-gray-100 -mx-4 px-4 overflow-x-auto">
           {TABS.map(({ id, label }) => (
             <button key={id} onClick={() => setTab(id)}
               className={`px-3 py-2 text-xs font-medium whitespace-nowrap border-b-2 transition-colors
-                ${tab === id ? "border-red-600 text-red-700 dark:text-red-400" : "border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"}`}>
+                ${tab === id ? "border-red-600 text-red-700" : "border-transparent text-gray-500 hover:text-gray-700"}`}>
               {label}
             </button>
           ))}
@@ -301,7 +301,7 @@ export default function Expense() {
           </p>
           {selected.size > 0 && (
             <div className="flex items-center gap-3">
-              <button onClick={() => setBulkDlg(true)} className="text-xs text-red-600 hover:text-red-700 font-medium flex items-center gap-1 bg-red-200 dark:bg-red-950/40 rounded-md px-2 py-1">
+              <button onClick={() => setBulkDlg(true)} className="text-xs text-red-600 hover:text-red-700 font-medium flex items-center gap-1 bg-red-200 rounded-md px-2 py-1">
                 <Trash2 className="w-3 h-3" />Delete selected
               </button>
               <span className="text-gray-300 text-xs">|</span>
@@ -313,9 +313,9 @@ export default function Expense() {
 
       {/* List */}
       {filtered.length === 0 ? (
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-16 text-center">
+        <div className="bg-white border border-gray-100 rounded-xl p-16 text-center">
           <Receipt className="w-8 h-8 text-gray-300 mx-auto mb-3" />
-          <p className="text-sm font-medium text-gray-900 dark:text-white mb-1">No expense records found</p>
+          <p className="text-sm font-medium text-gray-900 mb-1">No expense records found</p>
           <p className="text-xs text-gray-400 mb-4">{search ? "Try adjusting your search" : "Add your first expense record"}</p>
           {!search && (
             <Link to="/dashboard/expenses/add">
@@ -341,25 +341,25 @@ export default function Expense() {
             const CatIcon = CAT_ICON[expense.category] ?? Receipt;
             return (
               <div key={expense.id}
-                className={`group bg-white dark:bg-gray-900 border rounded-xl px-4 py-3 flex items-center gap-3 transition-all hover:shadow-sm
-                  ${selected.has(expense.id) ? "border-red-300 dark:border-red-800" : "border-gray-100 dark:border-gray-800"}`}>
+                className={`group bg-white border rounded-xl px-4 py-3 flex items-center gap-3 transition-all hover:shadow-sm
+                  ${selected.has(expense.id) ? "border-red-300" : "border-gray-100"}`}>
                 <button onClick={() => toggleSelect(expense.id)} className="shrink-0 text-gray-300 hover:text-gray-500">
                   {selected.has(expense.id) ? <CheckSquare className="w-4 h-4 text-red-500" /> : <Square className="w-4 h-4" />}
                 </button>
 
                 {/* Icon */}
-                <div className="w-9 h-9 rounded-lg bg-red-50 dark:bg-red-950/40 flex items-center justify-center shrink-0">
-                  <CatIcon className="w-4 h-4 text-red-600 dark:text-red-400" />
+                <div className="w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center shrink-0">
+                  <CatIcon className="w-4 h-4 text-red-600" />
                 </div>
 
                 {/* Main info */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">
+                    <p className="text-sm font-semibold text-gray-900 truncate">
                       {expense.title || "Untitled"}
                     </p>
                     {expense.isRecurring && (
-                      <span className="px-1.5 py-0.5 rounded-full text-xs bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-900">
+                      <span className="px-1.5 py-0.5 rounded-full text-xs bg-amber-50 text-amber-700 border border-amber-200">
                         Recurring
                       </span>
                     )}
@@ -373,14 +373,14 @@ export default function Expense() {
                 </div>
 
                 {/* Amount */}
-                <p className="text-base font-bold text-red-600 dark:text-red-400 shrink-0 tabular-nums">
+                <p className="text-base font-bold text-red-600 shrink-0 tabular-nums">
                   {INR(expense.amount)}
                 </p>
 
                 {/* Actions */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className="opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-all shrink-0">
+                    <button className="opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-gray-100 transition-all shrink-0">
                       <MoreVertical className="w-4 h-4 text-gray-500" />
                     </button>
                   </DropdownMenuTrigger>
@@ -408,7 +408,7 @@ export default function Expense() {
           </p>
           <div className="flex items-center gap-1">
             <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={safePage === 1}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 transition-colors">
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 disabled:opacity-30 transition-colors">
               <ChevronLeft className="w-4 h-4" />
             </button>
             {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
@@ -420,13 +420,13 @@ export default function Expense() {
               return (
                 <button key={p} onClick={() => setPage(p)}
                   className={`w-8 h-8 rounded-lg text-xs font-medium transition-colors
-                    ${p === safePage ? "bg-red-600 text-white" : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"}`}>
+                    ${p === safePage ? "bg-red-600 text-white" : "text-gray-600 hover:bg-gray-100"}`}>
                   {p}
                 </button>
               );
             })}
             <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={safePage === totalPages}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 transition-colors">
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 disabled:opacity-30 transition-colors">
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
@@ -436,7 +436,7 @@ export default function Expense() {
       {/* Bottom panels */}
       {expenses.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-4">
+          <div className="bg-white border border-gray-100 rounded-xl p-4">
             <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">By Category</p>
             <div className="space-y-2">
               {(() => {
@@ -448,10 +448,10 @@ export default function Expense() {
                   return (
                     <div key={cat}>
                       <div className="flex justify-between text-xs mb-1">
-                        <span className="text-gray-700 dark:text-gray-300 font-medium capitalize">{cat}</span>
+                        <span className="text-gray-700 font-medium capitalize">{cat}</span>
                         <span className="text-red-600 font-semibold">{INR(amt)} ({pct}%)</span>
                       </div>
-                      <div className="h-1.5 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                      <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                         <div className="h-full bg-red-500 rounded-full transition-all" style={{ width: `${pct}%` }} />
                       </div>
                     </div>
@@ -460,7 +460,7 @@ export default function Expense() {
               })()}
             </div>
           </div>
-          <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-4">
+          <div className="bg-white border border-gray-100 rounded-xl p-4">
             <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Quick Insights</p>
             <div className="space-y-2">
               {[
@@ -469,9 +469,9 @@ export default function Expense() {
                 ["Largest Expense",     INR(Math.max(...expenses.map((r) => r.amount || 0)))],
                 ["This vs Last Month",  `${stats.lastMonth > 0 ? ((stats.thisMonth / stats.lastMonth - 1) * 100).toFixed(1) : "—"}%`],
               ].map(([k, v]) => (
-                <div key={k} className="flex items-center justify-between py-1.5 border-b border-gray-50 dark:border-gray-800 last:border-0">
+                <div key={k} className="flex items-center justify-between py-1.5 border-b border-gray-50 last:border-0">
                   <span className="text-xs text-gray-500">{k}</span>
-                  <span className="text-xs font-semibold text-gray-900 dark:text-white">{v}</span>
+                  <span className="text-xs font-semibold text-gray-900">{v}</span>
                 </div>
               ))}
             </div>
@@ -481,27 +481,27 @@ export default function Expense() {
 
       {/* Dialogs */}
       <AlertDialog open={!!deleteTgt} onOpenChange={(v) => { if (!v) setDeleteTgt(null); }}>
-        <AlertDialogContent className="border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+        <AlertDialogContent className="border-gray-200 bg-white">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-sm">Delete Expense</AlertDialogTitle>
             <AlertDialogDescription className="text-xs text-gray-500">
-              Delete <span className="font-medium text-gray-900 dark:text-white">{deleteTgt?.title}</span>? This cannot be undone.
+              Delete <span className="font-medium text-gray-900">{deleteTgt?.title}</span>? This cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="h-8 text-xs border-gray-200 dark:border-gray-700">Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="h-8 text-xs border-gray-200">Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={handleDeleteConfirm} className="h-8 text-xs bg-red-600 hover:bg-red-700 text-white">Delete</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
       <AlertDialog open={bulkDlg} onOpenChange={setBulkDlg}>
-        <AlertDialogContent className="border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+        <AlertDialogContent className="border-gray-200 bg-white">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-sm">Delete {selected.size} Record{selected.size !== 1 ? "s" : ""}?</AlertDialogTitle>
             <AlertDialogDescription className="text-xs text-gray-500">This cannot be undone.</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="h-8 text-xs border-gray-200 dark:border-gray-700">Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="h-8 text-xs border-gray-200">Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={handleBulkDelete} className="h-8 text-xs bg-red-600 hover:bg-red-700 text-white">Delete {selected.size}</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

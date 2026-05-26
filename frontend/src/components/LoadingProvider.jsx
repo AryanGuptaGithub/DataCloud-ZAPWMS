@@ -24,9 +24,9 @@ export function LoadingProvider({ children }) {
       {children}
       {count > 0 && (
         <div className="fixed inset-0 z-[70] bg-black/25 backdrop-blur-sm flex items-center justify-center">
-          <div className="rounded-xl bg-white dark:bg-slate-900 shadow-xl px-5 py-4 flex items-center gap-3 border border-slate-200/30">
+          <div className="rounded-xl bg-white shadow-xl px-5 py-4 flex items-center gap-3 border border-slate-200/30">
             <Spinner className="h-6 w-6 text-indigo-600" />
-            <span className="text-sm text-slate-700 dark:text-slate-200">Working…</span>
+            <span className="text-sm text-slate-700">Working…</span>
           </div>
         </div>
       )}

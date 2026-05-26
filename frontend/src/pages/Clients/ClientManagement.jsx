@@ -1,3 +1,4 @@
+// ClientManagement.jsx
 import { useState, memo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -80,20 +81,20 @@ const MobileStepDrawer = ({
 
     {/* Drawer */}
     <div
-      className={`fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-900 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
+      className={`fixed top-0 right-0 h-full w-64 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
         isOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >
-      <div className="p-4 border-b border-gray-200 dark:border-gray-800">
+      <div className="p-4 border-b border-gray-200">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-xl font-bold text-gray-900">
             Navigation
           </h2>
           <Button
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="hover:bg-gray-100"
           >
             <X className="h-5 w-5" />
           </Button>
@@ -112,7 +113,7 @@ const MobileStepDrawer = ({
               className={`flex items-center gap-3 p-3 rounded-lg w-full text-left transition-colors ${
                 activeStep === step.id
                   ? "bg-indigo-600 text-white"
-                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  : "text-gray-700 hover:bg-gray-100"
               }`}
             >
               <div className="flex items-center gap-3">

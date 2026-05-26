@@ -113,13 +113,13 @@ function ProfileTab({ user, onSaved }) {
         <Label className="text-xs font-medium text-gray-500 uppercase tracking-wider flex items-center gap-1.5">
           <Mail className="w-3.5 h-3.5" />Email
         </Label>
-        <div className="flex items-center h-9 px-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-sm text-gray-500 dark:text-gray-400">
+        <div className="flex items-center h-9 px-3 rounded-lg border border-gray-200 bg-gray-50 text-sm text-gray-500">
           {user?.email}
         </div>
         <p className="text-xs text-gray-400">Email cannot be changed</p>
       </div>
 
-      <Separator className="bg-gray-100 dark:bg-gray-800" />
+      <Separator className="bg-gray-100" />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {fields.map(({ key, label, icon: Icon, type, placeholder, required }) => (
@@ -133,7 +133,7 @@ function ProfileTab({ user, onSaved }) {
               value={form[key]}
               onChange={(e) => set(key, e.target.value)}
               placeholder={placeholder}
-              className="h-9 text-sm border-gray-200 dark:border-gray-700"
+              className="h-9 text-sm border-gray-200"
             />
           </div>
         ))}
@@ -144,7 +144,7 @@ function ProfileTab({ user, onSaved }) {
           type="submit"
           disabled={saving || !dirty}
           size="sm"
-          className="h-8 text-xs gap-1.5 bg-gray-900 hover:bg-gray-800 dark:bg-white dark:text-gray-900 text-white disabled:opacity-40"
+          className="h-8 text-xs gap-1.5 bg-gray-900 hover:bg-gray-800 text-white disabled:opacity-40"
         >
           {saving
             ? <><RefreshCw className="w-3 h-3 animate-spin" />Saving...</>
@@ -202,12 +202,12 @@ function SecurityTab() {
           value={form[fieldKey]}
           onChange={(e) => set(fieldKey, e.target.value)}
           placeholder="••••••••••••"
-          className="h-9 text-sm pr-9 border-gray-200 dark:border-gray-700"
+          className="h-9 text-sm pr-9 border-gray-200"
         />
         <button
           type="button"
           onClick={() => toggleShow(showKey)}
-          className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+          className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
         >
           {show[showKey] ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
         </button>
@@ -218,9 +218,9 @@ function SecurityTab() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-w-sm">
       {success && (
-        <div className="flex items-center gap-2 px-3 py-2.5 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-lg">
+        <div className="flex items-center gap-2 px-3 py-2.5 bg-emerald-50 border border-emerald-200 rounded-lg">
           <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
-          <p className="text-sm text-emerald-700 dark:text-emerald-300">Password updated successfully</p>
+          <p className="text-sm text-emerald-700">Password updated successfully</p>
         </div>
       )}
 
@@ -234,12 +234,12 @@ function SecurityTab() {
             value={form.newPassword}
             onChange={(e) => set("newPassword", e.target.value)}
             placeholder="••••••••••••"
-            className="h-9 text-sm pr-9 border-gray-200 dark:border-gray-700"
+            className="h-9 text-sm pr-9 border-gray-200"
           />
           <button
             type="button"
             onClick={() => toggleShow("new")}
-            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
           >
             {show.new ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
           </button>
@@ -248,7 +248,7 @@ function SecurityTab() {
           <div className="space-y-1 pt-0.5">
             <div className="flex gap-0.5">
               {[0,1,2,3,4].map((i) => (
-                <div key={i} className={`h-1 flex-1 rounded-full transition-colors ${i < pwd.score ? pwd.bar : "bg-gray-200 dark:bg-gray-700"}`} />
+                <div key={i} className={`h-1 flex-1 rounded-full transition-colors ${i < pwd.score ? pwd.bar : "bg-gray-200"}`} />
               ))}
             </div>
             <p className="text-xs text-gray-400">{pwd.label}</p>
@@ -267,7 +267,7 @@ function SecurityTab() {
           type="submit"
           disabled={saving}
           size="sm"
-          className="h-8 text-xs gap-1.5 bg-gray-900 hover:bg-gray-800 dark:bg-white dark:text-gray-900 text-white"
+          className="h-8 text-xs gap-1.5 bg-gray-900 hover:bg-gray-800 text-white"
         >
           {saving
             ? <><RefreshCw className="w-3 h-3 animate-spin" />Updating...</>
@@ -312,29 +312,29 @@ export default function UserProfile() {
   /* loading skeleton */
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-950 p-4 md:p-6">
+      <div className="min-h-screen bg-gray-50 p-4 md:p-6">
         <div className="max-w-3xl mx-auto space-y-4 animate-pulse">
-          <div className="h-8 w-48 bg-gray-200 dark:bg-gray-800 rounded-lg" />
-          <div className="h-40 bg-gray-200 dark:bg-gray-800 rounded-xl" />
-          <div className="h-80 bg-gray-200 dark:bg-gray-800 rounded-xl" />
+          <div className="h-8 w-48 bg-gray-200 rounded-lg" />
+          <div className="h-40 bg-gray-200 rounded-xl" />
+          <div className="h-80 bg-gray-200 rounded-xl" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 p-4 md:p-6">
+    <div className="min-h-screen bg-gray-50 p-4 md:p-6">
       <div className="max-w-3xl mx-auto space-y-4">
 
         {/* ── Page header ── */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-bold text-gray-900 dark:text-white">Profile</h1>
+            <h1 className="text-xl font-bold text-gray-900">Profile</h1>
             <p className="text-xs text-gray-500 mt-0.5">Manage your account details</p>
           </div>
           <button
             onClick={() => setLogoutOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30 border border-red-200 dark:border-red-900 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-red-600 hover:bg-red-50 border border-red-200 transition-colors"
           >
             <LogOut className="w-3.5 h-3.5" />
             Log out
@@ -342,19 +342,19 @@ export default function UserProfile() {
         </div>
 
         {/* ── Identity card ── */}
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-5">
+        <div className="bg-white border border-gray-100 rounded-xl p-5">
           <div className="flex items-center gap-4">
             <Avatar className="w-14 h-14 shrink-0">
               <AvatarImage src={user?.avatar || ""} alt={user?.name} />
-              <AvatarFallback className="text-lg font-bold bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+              <AvatarFallback className="text-lg font-bold bg-gray-200 text-gray-700">
                 {initials(user?.name)}
               </AvatarFallback>
             </Avatar>
             <div className="min-w-0 flex-1">
-              <p className="text-base font-semibold text-gray-900 dark:text-white truncate">
+              <p className="text-base font-semibold text-gray-900 truncate">
                 {user?.name || "No name set"}
               </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400 truncate">{user?.email}</p>
+              <p className="text-sm text-gray-500 truncate">{user?.email}</p>
               <div className="flex items-center gap-3 mt-1.5 flex-wrap">
                 {user?.company && (
                   <span className="flex items-center gap-1 text-xs text-gray-400">
@@ -377,17 +377,17 @@ export default function UserProfile() {
         </div>
 
         {/* ── Tabs ── */}
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden">
+        <div className="bg-white border border-gray-100 rounded-xl overflow-hidden">
           {/* Tab bar */}
-          <div className="flex border-b border-gray-100 dark:border-gray-800">
+          <div className="flex border-b border-gray-100">
             {TABS.map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
                 onClick={() => setTab(id)}
                 className={`flex items-center gap-2 px-5 py-3 text-sm font-medium border-b-2 transition-colors
                   ${tab === id
-                    ? "border-gray-900 dark:border-white text-gray-900 dark:text-white"
-                    : "border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                    ? "border-gray-900 text-gray-900"
+                    : "border-transparent text-gray-500 hover:text-gray-700"
                   }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -407,7 +407,7 @@ export default function UserProfile() {
 
       {/* Logout confirmation */}
       <AlertDialog open={logoutOpen} onOpenChange={setLogoutOpen}>
-        <AlertDialogContent className="border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+        <AlertDialogContent className="border-gray-200 bg-white">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-sm font-semibold">Log out?</AlertDialogTitle>
             <AlertDialogDescription className="text-xs text-gray-500">
@@ -415,7 +415,7 @@ export default function UserProfile() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="h-8 text-xs border-gray-200 dark:border-gray-700">
+            <AlertDialogCancel className="h-8 text-xs border-gray-200">
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction

@@ -42,10 +42,10 @@ export default function Home() {
   const { user, loading } = useAuthUser();
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white">
+    <div className="min-h-screen bg-white text-gray-900">
 
       {/* ── Hero ── */}
-      <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-gray-950 dark:bg-gray-950 text-white relative overflow-hidden">
+      <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-gray-950 text-white relative overflow-hidden">
         {/* subtle grid */}
         <div className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
@@ -93,22 +93,22 @@ export default function Home() {
       </section>
 
       {/* ── Features ── */}
-      <section className="py-20 px-6 bg-white dark:bg-gray-950">
+      <section className="py-20 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold mb-3">Everything you need</h2>
-            <p className="text-gray-500 dark:text-gray-400 text-sm max-w-md mx-auto">
+            <p className="text-gray-500 text-sm max-w-md mx-auto">
               Four core modules, zero clutter. Built for small teams that want clarity.
             </p>
           </div>
           <div className="grid sm:grid-cols-3 gap-6">
             {FEATURES.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="p-6 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-gray-200 dark:hover:border-gray-700 transition-colors group">
-                <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-950/40 transition-colors">
-                  <Icon className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
+              <div key={title} className="p-6 rounded-2xl border border-gray-100 hover:border-gray-200 transition-colors group">
+                <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center mb-4 group-hover:bg-emerald-50 transition-colors">
+                  <Icon className="w-5 h-5 text-gray-600 group-hover:text-emerald-600 transition-colors" />
                 </div>
                 <h3 className="font-semibold mb-2 text-sm">{title}</h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{desc}</p>
+                <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -116,36 +116,36 @@ export default function Home() {
       </section>
 
       {/* ── Why ── */}
-      <section className="py-20 px-6 bg-gray-50 dark:bg-gray-900">
+      <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="grid sm:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">Why ZapDataCloud?</h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-8 leading-relaxed">
+              <p className="text-sm text-gray-500 mb-8 leading-relaxed">
                 We built this because other tools were either too complex or too shallow. This is the middle ground — powerful enough for agencies, simple enough for freelancers.
               </p>
               {!loading && !user && (
                 <button onClick={() => navigate("/register")}
-                  className="flex items-center gap-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors">
+                  className="flex items-center gap-2 text-sm font-medium text-emerald-600 hover:text-emerald-700 transition-colors">
                   Start for free <ChevronRight className="w-4 h-4" />
                 </button>
               )}
               {!loading && user && (
                 <button onClick={() => navigate("/dashboard")}
-                  className="flex items-center gap-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors">
+                  className="flex items-center gap-2 text-sm font-medium text-emerald-600 hover:text-emerald-700 transition-colors">
                   Open dashboard <ChevronRight className="w-4 h-4" />
                 </button>
               )}
             </div>
             <div className="space-y-4">
               {WHY.map(({ icon: Icon, title, desc }) => (
-                <div key={title} className="flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 flex items-center justify-center shrink-0">
-                    <Icon className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <div key={title} className="flex items-start gap-4 p-4 rounded-xl bg-white border border-gray-100">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center shrink-0">
+                    <Icon className="w-4 h-4 text-emerald-600" />
                   </div>
                   <div>
                     <p className="text-sm font-semibold">{title}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{desc}</p>
+                    <p className="text-xs text-gray-500 mt-0.5">{desc}</p>
                   </div>
                 </div>
               ))}
@@ -155,14 +155,14 @@ export default function Home() {
       </section>
 
       {/* ── Testimonials ── */}
-      <section className="py-20 px-6 bg-white dark:bg-gray-950">
+      <section className="py-20 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl font-bold text-center mb-10">What users say</h2>
           <div className="grid sm:grid-cols-3 gap-5">
             {TESTIMONIALS.map(({ name, text }) => (
-              <div key={name} className="p-5 rounded-2xl border border-gray-100 dark:border-gray-800">
-                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">"{text}"</p>
-                <p className="text-xs font-semibold text-gray-900 dark:text-white">— {name}</p>
+              <div key={name} className="p-5 rounded-2xl border border-gray-100">
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">"{text}"</p>
+                <p className="text-xs font-semibold text-gray-900">— {name}</p>
               </div>
             ))}
           </div>

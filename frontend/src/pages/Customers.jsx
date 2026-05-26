@@ -37,11 +37,11 @@ import {
 
 /* ── category pill ───────────────────────── */
 const CAT = {
-  premium:  "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-900",
-  regular:  "bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/40 dark:text-sky-300 dark:border-sky-900",
-  lead:     "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-900",
-  inactive: "bg-gray-100 text-gray-600 border-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700",
-  prospect: "bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-950/40 dark:text-violet-300 dark:border-violet-900",
+  premium:  "bg-amber-50 text-amber-700 border-amber-200",
+  regular:  "bg-sky-50 text-sky-700 border-sky-200",
+  lead:     "bg-emerald-50 text-emerald-700 border-emerald-200",
+  inactive: "bg-gray-100 text-gray-600 border-gray-200",
+  prospect: "bg-violet-50 text-violet-700 border-violet-200",
 };
 
 function CategoryPill({ value }) {
@@ -54,20 +54,20 @@ function CategoryPill({ value }) {
 
 function StatCard({ icon: Icon, label, value, accent }) {
   const colors = {
-    gray:    "bg-gray-100 dark:bg-gray-800 text-gray-500",
-    sky:     "bg-sky-100 dark:bg-sky-900/40 text-sky-600",
-    emerald: "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600",
-    orange:  "bg-orange-100 dark:bg-orange-900/40 text-orange-600",
-    violet:  "bg-violet-100 dark:bg-violet-900/40 text-violet-600",
-    amber:   "bg-amber-100 dark:bg-amber-900/40 text-amber-600",
+    gray:    "bg-gray-100 text-gray-500",
+    sky:     "bg-sky-100 text-sky-600",
+    emerald: "bg-emerald-100 text-emerald-600",
+    orange:  "bg-orange-100 text-orange-600",
+    violet:  "bg-violet-100 text-violet-600",
+    amber:   "bg-amber-100 text-amber-600",
   };
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-4 flex items-center gap-3">
+    <div className="bg-white border border-gray-100 rounded-xl p-4 flex items-center gap-3">
       <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${colors[accent] ?? colors.gray}`}>
         <Icon className="w-4 h-4" />
       </div>
       <div>
-        <p className="text-xl font-bold text-gray-900 dark:text-white tabular-nums leading-none">{value}</p>
+        <p className="text-xl font-bold text-gray-900 tabular-nums leading-none">{value}</p>
         <p className="text-xs text-gray-500 mt-0.5">{label}</p>
       </div>
     </div>
@@ -235,30 +235,30 @@ export default function Customers() {
      RENDER
   ───────────────────────────────────────── */
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 p-4 md:p-6 space-y-4">
+    <div className="min-h-screen bg-gray-50 p-4 md:p-6 space-y-4">
 
       {/* ── Header ── */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-bold text-gray-900 dark:text-white">Clients</h1>
+          <h1 className="text-xl font-bold text-gray-900">Clients</h1>
           <p className="text-xs text-gray-500 mt-0.5">{stats.total} total clients</p>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
           <Button variant="outline" size="sm" onClick={handleExport}
-            className="h-8 text-xs gap-1.5 border-gray-200 dark:border-gray-700">
+            className="h-8 text-xs gap-1.5 border-gray-200">
             <Download className="w-3.5 h-3.5" />
             {selected.size > 0 ? `Export (${selected.size})` : "Export"}
           </Button>
           <Button variant="outline" size="sm" onClick={() => navigate("/dashboard/clients/import")}
-            className="h-8 text-xs gap-1.5 border-gray-200 dark:border-gray-700">
+            className="h-8 text-xs gap-1.5 border-gray-200">
             <Upload className="w-3.5 h-3.5" />Import
           </Button>
           <Button variant="outline" size="sm" onClick={fetchClients} disabled={loading}
-            className="h-8 text-xs border-gray-200 dark:border-gray-700">
+            className="h-8 text-xs border-gray-200">
             <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
           </Button>
           <Button size="sm" onClick={() => setAddOpen(true)}
-            className="h-8 text-xs gap-1.5 bg-gray-900 hover:bg-gray-800 dark:bg-white dark:text-gray-900 text-white">
+            className="h-8 text-xs gap-1.5 bg-gray-900 hover:bg-gray-800 text-white">
             <Plus className="w-3.5 h-3.5" />Add Client
           </Button>
         </div>
@@ -274,14 +274,14 @@ export default function Customers() {
       </div>
 
       {/* ── Filters toolbar ── */}
-      <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl px-4 py-3 space-y-3 border-gray-300">
+      <div className="bg-white border border-gray-100 rounded-xl px-4 py-3 space-y-3 border-gray-300">
         {/* Top row */}
         <div className="flex flex-col sm:flex-row gap-2">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <Input value={search} onChange={(e) => setSearch(e.target.value)}
               placeholder="Search name, company, email, phone..."
-              className="pl-9 h-8 text-sm border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800" />
+              className="pl-9 h-8 text-sm border-gray-200 bg-gray-50" />
             {search && (
               <button onClick={() => setSearch("")} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
                 <X className="w-3.5 h-3.5" />
@@ -290,10 +290,10 @@ export default function Customers() {
           </div>
           <div className="flex gap-2 flex-wrap">
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="h-8 text-xs w-[130px] border-gray-200 dark:border-gray-700">
+              <SelectTrigger className="h-8 text-xs w-[130px] border-gray-200">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
+              <SelectContent className="bg-white border border-gray-100">
                 <SelectItem value="newest">Newest first</SelectItem>
                 <SelectItem value="oldest">Oldest first</SelectItem>
                 <SelectItem value="name-asc">Name A–Z</SelectItem>
@@ -301,19 +301,19 @@ export default function Customers() {
               </SelectContent>
             </Select>
             <Select value={String(perPage)} onValueChange={(v) => setPerPage(Number(v))}>
-              <SelectTrigger className="h-8 text-xs w-[70px] border-gray-200 dark:border-gray-700">
+              <SelectTrigger className="h-8 text-xs w-[70px] border-gray-200">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
+              <SelectContent className="bg-white border border-gray-100">
                 {PER_PAGE_OPTS.map((n) => <SelectItem key={n} value={String(n)}>{n}</SelectItem>)}
               </SelectContent>
             </Select>
             {/* View toggle */}
-            <div className="flex rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div className="flex rounded-lg border border-gray-200 overflow-hidden">
               {[["table", AlignJustify], ["grid", Grid3x3]].map(([v, Icon]) => (
                 <button key={v} onClick={() => setViewMode(v)}
                   className={`px-2.5 h-8 flex items-center transition-colors
-                    ${viewMode === v ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900" : "bg-white dark:bg-gray-900 text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"}`}>
+                    ${viewMode === v ? "bg-gray-900 text-white" : "bg-white text-gray-400 hover:text-gray-700"}`}>
                   <Icon className="w-3.5 h-3.5" />
                 </button>
               ))}
@@ -322,13 +322,13 @@ export default function Customers() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-0.5 border-b border-gray-100 dark:border-gray-800 -mx-4 px-4 overflow-x-auto">
+        <div className="flex gap-0.5 border-b border-gray-100 -mx-4 px-4 overflow-x-auto">
           {TABS.map(({ id, label }) => (
             <button key={id} onClick={() => setTab(id)}
               className={`px-3 py-2 text-xs font-medium whitespace-nowrap border-b-2 transition-colors
                 ${tab === id
-                  ? "border-gray-900 dark:border-white text-gray-900 dark:text-white"
-                  : "border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"}`}>
+                  ? "border-gray-900 text-gray-900"
+                  : "border-transparent text-gray-500 hover:text-gray-700"}`}>
               {label}
             </button>
           ))}
@@ -343,7 +343,7 @@ export default function Customers() {
           {selected.size > 0 && (
             <div className="flex items-center gap-3">
               <button onClick={() => setBulkDlg(true)}
-                className="text-xs text-red-600 hover:text-red-700 font-medium flex items-center gap-1 bg-red-200 dark:bg-red-950/40 rounded-md px-2 py-1">
+                className="text-xs text-red-600 hover:text-red-700 font-medium flex items-center gap-1 bg-red-200 rounded-md px-2 py-1">
                 <Trash2 className="w-3 h-3" />Delete selected
               </button>
               <span className="text-gray-300 text-xs">|</span>
@@ -355,27 +355,27 @@ export default function Customers() {
 
       {/* ── Content ── */}
       {filtered.length === 0 ? (
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-16 text-center">
-          <div className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center mx-auto mb-3">
+        <div className="bg-white border border-gray-100 rounded-xl p-16 text-center">
+          <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center mx-auto mb-3">
             <Users className="w-5 h-5 text-gray-400" />
           </div>
-          <p className="text-sm font-medium text-gray-900 dark:text-white mb-1">No clients found</p>
+          <p className="text-sm font-medium text-gray-900 mb-1">No clients found</p>
           <p className="text-xs text-gray-400 mb-4">
             {search ? "Try adjusting your search" : "Add your first client to get started"}
           </p>
           {!search && (
             <Button size="sm" onClick={() => setAddOpen(true)}
-              className="h-8 text-xs gap-1.5 bg-gray-900 hover:bg-gray-800 dark:bg-white dark:text-gray-900 text-white">
+              className="h-8 text-xs gap-1.5 bg-gray-900 hover:bg-gray-800 text-white">
               <Plus className="w-3.5 h-3.5" />Add First Client
             </Button>
           )}
         </div>
       ) : viewMode === "table" ? (
         /* ── TABLE ── */
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden">
+        <div className="bg-white border border-gray-100 rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full border-gray-400 dark:border-gray-400">
-              <thead className="border-b border-gray-100 dark:border-gray-800 bg-gray-50/60 dark:bg-gray-800/40">
+            <table className="w-full border-gray-400">
+              <thead className="border-b border-gray-100 bg-gray-50/60">
                 <tr >
                   <th className="pl-4 pr-2 py-2.5 w-8">
                     <button onClick={toggleSelectAll} className="text-gray-400 hover:text-gray-600">
@@ -393,17 +393,17 @@ export default function Customers() {
                   <th className="w-10" />
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-50 dark:divide-gray-800/50">
+              <tbody className="divide-y divide-gray-50">
                 {pageSlice.map((client) => (
                   <tr key={client._id}
-                    className={`group transition-colors ${selected.has(client._id) ? "bg-sky-50/50 dark:bg-sky-950/20" : "hover:bg-gray-50/80 dark:hover:bg-gray-800/40"}`}>
+                    className={`group transition-colors ${selected.has(client._id) ? "bg-sky-50/50" : "hover:bg-gray-50/80"}`}>
                     <td className="pl-4 pr-2 py-3 w-8">
                       <button onClick={() => toggleSelect(client._id)} className="text-gray-300 hover:text-gray-500">
                         {selected.has(client._id) ? <CheckSquare className="w-4 h-4 text-sky-500" /> : <Square className="w-4 h-4" />}
                       </button>
                     </td>
                     <td className="py-3 px-3">
-                      <p className="text-sm font-medium text-gray-900 dark:text-white">{client.clientName}</p>
+                      <p className="text-sm font-medium text-gray-900">{client.clientName}</p>
                       {client.clientDesignation && (
                         <p className="text-xs text-gray-400">{client.clientDesignation}</p>
                       )}
@@ -411,7 +411,7 @@ export default function Customers() {
                     <td className="py-3 px-3 hidden sm:table-cell">
                       <div className="flex items-center gap-1.5">
                         <Building2 className="w-3.5 h-3.5 text-gray-400 shrink-0" />
-                        <span className="text-sm text-gray-600 dark:text-gray-300 truncate max-w-[140px]">{client.companyName}</span>
+                        <span className="text-sm text-gray-600 truncate max-w-[140px]">{client.companyName}</span>
                       </div>
                     </td>
                     <td className="py-3 px-3 hidden lg:table-cell">
@@ -419,13 +419,13 @@ export default function Customers() {
                         {client.email && (
                           <div className="flex items-center gap-1.5">
                             <Mail className="w-3 h-3 text-gray-400" />
-                            <span className="text-xs text-gray-600 dark:text-gray-400 truncate max-w-[150px]">{client.email}</span>
+                            <span className="text-xs text-gray-600 truncate max-w-[150px]">{client.email}</span>
                           </div>
                         )}
                         {client.phone && (
                           <div className="flex items-center gap-1.5">
                             <Phone className="w-3 h-3 text-gray-400" />
-                            <span className="text-xs text-gray-600 dark:text-gray-400">{client.phone}</span>
+                            <span className="text-xs text-gray-600">{client.phone}</span>
                           </div>
                         )}
                       </div>
@@ -434,7 +434,7 @@ export default function Customers() {
                       {client.city && (
                         <div className="flex items-center gap-1.5">
                           <MapPin className="w-3 h-3 text-gray-400" />
-                          <span className="text-xs text-gray-600 dark:text-gray-400">{client.city}</span>
+                          <span className="text-xs text-gray-600">{client.city}</span>
                         </div>
                       )}
                     </td>
@@ -451,7 +451,7 @@ export default function Customers() {
                     <td className="py-3 px-3 pr-4">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <button className="opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-all">
+                          <button className="opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-gray-100 transition-all">
                             <MoreVertical className="w-4 h-4 text-gray-500" />
                           </button>
                         </DropdownMenuTrigger>
@@ -480,10 +480,10 @@ export default function Customers() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
           {pageSlice.map((client) => (
             <div key={client._id}
-              className={`relative bg-white dark:bg-gray-900 rounded-xl border transition-all hover:shadow-sm
+              className={`relative bg-white rounded-xl border transition-all hover:shadow-sm
                 ${selected.has(client._id)
-                  ? "border-sky-400 dark:border-sky-600 ring-1 ring-sky-400/20"
-                  : "border-gray-100 dark:border-gray-800 hover:border-gray-200 dark:hover:border-gray-700"}`}>
+                  ? "border-sky-400 ring-1 ring-sky-400/20"
+                  : "border-gray-100 hover:border-gray-200"}`}>
               <div className="p-4">
                 <div className="flex items-start justify-between mb-2.5">
                   <div className="flex items-start gap-2 min-w-0">
@@ -491,13 +491,13 @@ export default function Customers() {
                       {selected.has(client._id) ? <CheckSquare className="w-4 h-4 text-sky-500" /> : <Square className="w-4 h-4" />}
                     </button>
                     <div className="min-w-0">
-                      <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">{client.clientName}</p>
+                      <p className="text-sm font-semibold text-gray-900 truncate">{client.clientName}</p>
                       <p className="text-xs text-gray-500 truncate">{client.companyName}</p>
                     </div>
                   </div>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <button className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-400 shrink-0">
+                      <button className="p-1 rounded hover:bg-gray-100 text-gray-400 shrink-0">
                         <MoreVertical className="w-4 h-4" />
                       </button>
                     </DropdownMenuTrigger>
@@ -523,7 +523,7 @@ export default function Customers() {
                 {client.tags?.length > 0 && (
                   <div className="mt-3 flex flex-wrap gap-1">
                     {client.tags.slice(0, 3).map((t) => (
-                      <span key={t} className="px-1.5 py-0.5 rounded text-xs bg-gray-100 dark:bg-gray-800 text-gray-500">{t}</span>
+                      <span key={t} className="px-1.5 py-0.5 rounded text-xs bg-gray-100 text-gray-500">{t}</span>
                     ))}
                     {client.tags.length > 3 && <span className="text-xs text-gray-400">+{client.tags.length - 3}</span>}
                   </div>
@@ -542,7 +542,7 @@ export default function Customers() {
           </p>
           <div className="flex items-center gap-1">
             <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={safePage === 1}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 transition-colors">
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 disabled:opacity-30 transition-colors">
               <ChevronLeft className="w-4 h-4" />
             </button>
             {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
@@ -555,14 +555,14 @@ export default function Customers() {
                 <button key={p} onClick={() => setPage(p)}
                   className={`w-8 h-8 rounded-lg text-xs font-medium transition-colors
                     ${p === safePage
-                      ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900"
-                      : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"}`}>
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-600 hover:bg-gray-100"}`}>
                   {p}
                 </button>
               );
             })}
             <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={safePage === totalPages}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 transition-colors">
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 disabled:opacity-30 transition-colors">
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
@@ -573,7 +573,7 @@ export default function Customers() {
 
       {/* Add */}
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
-        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto border-gray-200 bg-white">
           <DialogHeader>
             <DialogTitle className="text-sm font-semibold">Add Client</DialogTitle>
             <DialogDescription className="text-xs text-gray-500">Fill in the client details below.</DialogDescription>
@@ -586,7 +586,7 @@ export default function Customers() {
 
       {/* Edit */}
       <Dialog open={!!editClient} onOpenChange={(v) => { if (!v) setEditClient(null); }}>
-        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto border-gray-200 bg-white">
           <DialogHeader>
             <DialogTitle className="text-sm font-semibold">Edit Client</DialogTitle>
             <DialogDescription className="text-xs text-gray-500">Update client details.</DialogDescription>
@@ -602,7 +602,7 @@ export default function Customers() {
 
       {/* View */}
       <Dialog open={!!viewClient} onOpenChange={(v) => { if (!v) setViewClient(null); }}>
-        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto border-gray-200 bg-white">
           {viewClient && (
             <ClientDetailView
               client={viewClient}
@@ -614,16 +614,16 @@ export default function Customers() {
 
       {/* Delete single */}
       <AlertDialog open={!!deleteTgt} onOpenChange={(v) => { if (!v) setDeleteTgt(null); }}>
-        <AlertDialogContent className="border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+        <AlertDialogContent className="border-gray-200 bg-white">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-sm">Delete Client</AlertDialogTitle>
             <AlertDialogDescription className="text-xs text-gray-500">
-              Delete <span className="font-medium text-gray-900 dark:text-white">{deleteTgt?.clientName}</span>?
+              Delete <span className="font-medium text-gray-900">{deleteTgt?.clientName}</span>?
               This cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="h-8 text-xs border-gray-200 dark:border-gray-700">Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="h-8 text-xs border-gray-200">Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={handleDeleteConfirm} className="h-8 text-xs bg-red-600 hover:bg-red-700 text-white">Delete</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -631,7 +631,7 @@ export default function Customers() {
 
       {/* Bulk delete */}
       <AlertDialog open={bulkDlg} onOpenChange={setBulkDlg}>
-        <AlertDialogContent className="border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+        <AlertDialogContent className="border-gray-200 bg-white">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-sm">Delete {selected.size} Client{selected.size !== 1 ? "s" : ""}?</AlertDialogTitle>
             <AlertDialogDescription className="text-xs text-gray-500">
@@ -639,7 +639,7 @@ export default function Customers() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="h-8 text-xs border-gray-200 dark:border-gray-700">Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="h-8 text-xs border-gray-200">Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={handleBulkDelete} className="h-8 text-xs bg-red-600 hover:bg-red-700 text-white">
               Delete {selected.size}
             </AlertDialogAction>

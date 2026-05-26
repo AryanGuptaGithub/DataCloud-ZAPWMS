@@ -40,18 +40,18 @@ const CHART_COLORS = ["#10b981", "#3b82f6", "#f59e0b", "#ef4444", "#8b5cf6"];
 /* ── stat card ───────────────────────────── */
 function StatCard({ icon: Icon, label, value, change, accent, to }) {
   const colors = {
-    emerald: "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400",
-    red:     "bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400",
-    sky:     "bg-sky-100 dark:bg-sky-900/40 text-sky-600 dark:text-sky-400",
-    violet:  "bg-violet-100 dark:bg-violet-900/40 text-violet-600 dark:text-violet-400",
+    emerald: "bg-emerald-100  text-emerald-600 ",
+    red:     "bg-red-100  text-red-600 ",
+    sky:     "bg-sky-100  text-sky-600 ",
+    violet:  "bg-violet-100  text-violet-600 ",
   };
   const inner = (
-    <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-4 flex items-center gap-3 hover:shadow-sm transition-all group">
+    <div className="bg-white  border border-gray-100  rounded-xl p-4 flex items-center gap-3 hover:shadow-sm transition-all group">
       <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${colors[accent] ?? colors.sky}`}>
         <Icon className="w-5 h-5" />
       </div>
       <div className="min-w-0 flex-1">
-        <p className="text-xl font-bold text-gray-900 dark:text-white tabular-nums leading-none">{value}</p>
+        <p className="text-xl font-bold text-gray-900  tabular-nums leading-none">{value}</p>
         <p className="text-xs text-gray-500 mt-0.5">{label}</p>
         {change && (
           <div className={`flex items-center gap-1 mt-1 text-xs font-medium ${change.up ? "text-emerald-600" : "text-red-500"}`}>
@@ -71,7 +71,7 @@ function SectionHead({ title, sub, action }) {
   return (
     <div className="flex items-center justify-between mb-3">
       <div>
-        <p className="text-sm font-semibold text-gray-900 dark:text-white">{title}</p>
+        <p className="text-sm font-semibold text-gray-900 ">{title}</p>
         {sub && <p className="text-xs text-gray-400 mt-0.5">{sub}</p>}
       </div>
       {action}
@@ -83,8 +83,8 @@ function SectionHead({ title, sub, action }) {
 function ChartTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 shadow-lg text-xs">
-      <p className="font-semibold text-gray-700 dark:text-gray-300 mb-1">{label}</p>
+    <div className="bg-white  border border-gray-200  rounded-lg px-3 py-2 shadow-lg text-xs">
+      <p className="font-semibold text-gray-700  mb-1">{label}</p>
       {payload.map((p, i) => (
         <p key={i} style={{ color: p.color }}>{p.name}: {INR(p.value)}</p>
       ))}
@@ -190,7 +190,7 @@ export default function DashboardHome() {
   /* ── render ── */
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50  flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <div className="w-8 h-8 border-2 border-gray-300 border-t-emerald-600 rounded-full animate-spin" />
           <p className="text-xs text-gray-500">Loading dashboard...</p>
@@ -200,18 +200,18 @@ export default function DashboardHome() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 p-4 md:p-6 space-y-5">
+    <div className="min-h-screen bg-gray-50  p-4 md:p-6 space-y-5">
 
       {/* ── Header ── */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+          <h1 className="text-xl font-bold text-gray-900 ">Dashboard</h1>
           <p className="text-xs text-gray-500 mt-0.5">
             {format(new Date(), "EEEE, dd MMMM yyyy")}
           </p>
         </div>
         <Button variant="outline" size="sm" onClick={fetchAll}
-          className="h-8 text-xs gap-1.5 border-gray-200 dark:border-gray-700">
+          className="h-8 text-xs gap-1.5 border-gray-200 ">
           <RefreshCw className="w-3.5 h-3.5" />
           Refresh
         </Button>
@@ -226,7 +226,7 @@ export default function DashboardHome() {
       </div>
 
       {/* ── This month strip ── */}
-      <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl px-5 py-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div className="bg-white  border border-gray-100  rounded-xl px-5 py-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
         {[
           { label: "Income this month",   value: INR(stats.thisIncome),  color: "text-emerald-600" },
           { label: "Expenses this month", value: INR(stats.thisExpense), color: "text-red-500"     },
@@ -244,7 +244,7 @@ export default function DashboardHome() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
 
         {/* Area chart — takes 2 cols */}
-        <div className="lg:col-span-2 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-5">
+        <div className="lg:col-span-2 bg-white  border border-gray-100  rounded-xl p-5">
           <SectionHead title="Income vs Expenses" sub="Last 6 months" />
           <div className="h-56">
             <ResponsiveContainer width="100%" height="100%">
@@ -280,7 +280,7 @@ export default function DashboardHome() {
         </div>
 
         {/* Pie chart */}
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-5">
+        <div className="bg-white  border border-gray-100  rounded-xl p-5">
           <SectionHead title="Expenses by Category" sub="All time" />
           {expCat.length > 0 ? (
             <>
@@ -302,9 +302,9 @@ export default function DashboardHome() {
                   <div key={c.name} className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full shrink-0" style={{ background: CHART_COLORS[i % CHART_COLORS.length] }} />
-                      <span className="text-xs text-gray-600 dark:text-gray-400 capitalize truncate max-w-[90px]">{c.name}</span>
+                      <span className="text-xs text-gray-600  capitalize truncate max-w-[90px]">{c.name}</span>
                     </div>
-                    <span className="text-xs font-semibold text-gray-700 dark:text-gray-300 tabular-nums">{INR(c.value)}</span>
+                    <span className="text-xs font-semibold text-gray-700  tabular-nums">{INR(c.value)}</span>
                   </div>
                 ))}
               </div>
@@ -322,22 +322,22 @@ export default function DashboardHome() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
 
         {/* Recent income */}
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-5">
+        <div className="bg-white  border border-gray-100  rounded-xl p-5">
           <SectionHead
             title="Recent Income"
             action={
               <Link to="/dashboard/income"
-                className="text-xs text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 flex items-center gap-0.5">
+                className="text-xs text-emerald-600 hover:text-emerald-700  flex items-center gap-0.5">
                 View all <ChevronRight className="w-3 h-3" />
               </Link>
             }
           />
           {recentIncomes.length > 0 ? (
-            <div className="divide-y divide-gray-50 dark:divide-gray-800/50">
+            <div className="divide-y divide-gray-50 ">
               {recentIncomes.map((inc, i) => (
                 <div key={i} className="flex items-center justify-between py-2.5">
                   <div className="min-w-0">
-                    <p className="text-xs font-medium text-gray-800 dark:text-gray-200 truncate">
+                    <p className="text-xs font-medium text-gray-800  truncate">
                       {inc.title || "Income"}
                     </p>
                     <p className="text-xs text-gray-400">{fmtDate(inc.date)}</p>
@@ -357,7 +357,7 @@ export default function DashboardHome() {
         </div>
 
         {/* Recent expenses */}
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-5">
+        <div className="bg-white  border border-gray-100  rounded-xl p-5">
           <SectionHead
             title="Recent Expenses"
             action={
@@ -368,11 +368,11 @@ export default function DashboardHome() {
             }
           />
           {recentExpenses.length > 0 ? (
-            <div className="divide-y divide-gray-50 dark:divide-gray-800/50">
+            <div className="divide-y divide-gray-50 ">
               {recentExpenses.map((exp, i) => (
                 <div key={i} className="flex items-center justify-between py-2.5">
                   <div className="min-w-0">
-                    <p className="text-xs font-medium text-gray-800 dark:text-gray-200 truncate">
+                    <p className="text-xs font-medium text-gray-800  truncate">
                       {exp.title || "Expense"}
                     </p>
                     <p className="text-xs text-gray-400">{fmtDate(exp.date)}</p>
@@ -394,21 +394,21 @@ export default function DashboardHome() {
         {/* Right column: quick actions + summary */}
         <div className="space-y-4">
           {/* Quick actions */}
-          <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-5">
+          <div className="bg-white  border border-gray-100  rounded-xl p-5">
             <SectionHead title="Quick Actions" />
             <div className="space-y-2">
               {[
-                { to: "/dashboard/income/add",   icon: TrendingUp,   label: "Add Income",     cls: "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40" },
-                { to: "/dashboard/expenses/add", icon: TrendingDown, label: "Add Expense",     cls: "text-red-500 bg-red-50 dark:bg-red-950/40"             },
-                { to: "/dashboard/clients/new",  icon: Users,        label: "Add Client",      cls: "text-sky-600 bg-sky-50 dark:bg-sky-950/40"             },
-                { to: "/dashboard/credentials",  icon: KeyRound,     label: "Add Credential",  cls: "text-violet-600 bg-violet-50 dark:bg-violet-950/40"    },
+                { to: "/dashboard/income/add",   icon: TrendingUp,   label: "Add Income",     cls: "text-emerald-600 bg-emerald-50 " },
+                { to: "/dashboard/expenses/add", icon: TrendingDown, label: "Add Expense",     cls: "text-red-500 bg-red-50 "             },
+                { to: "/dashboard/clients/new",  icon: Users,        label: "Add Client",      cls: "text-sky-600 bg-sky-50 "             },
+                { to: "/dashboard/credentials",  icon: KeyRound,     label: "Add Credential",  cls: "text-violet-600 bg-violet-50 "    },
               ].map(({ to, icon: Icon, label, cls }) => (
                 <Link key={to} to={to}
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group">
+                  className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50  transition-colors group">
                   <div className={`w-7 h-7 rounded-md flex items-center justify-center shrink-0 ${cls}`}>
                     <Icon className="w-3.5 h-3.5" />
                   </div>
-                  <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                  <span className="text-sm text-gray-700  group-hover:text-gray-900 transition-colors">
                     {label}
                   </span>
                   <ChevronRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-gray-500 ml-auto transition-colors" />
@@ -418,7 +418,7 @@ export default function DashboardHome() {
           </div>
 
           {/* Summary strip */}
-          <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-5">
+          <div className="bg-white  border border-gray-100  rounded-xl p-5">
             <SectionHead title="At a Glance" />
             <div className="space-y-2">
               {[
@@ -427,9 +427,9 @@ export default function DashboardHome() {
                 ["Avg. expense",       INR(expenses.length ? stats.totalExpenses / expenses.length : 0)],
                 ["Profit margin",      stats.totalIncome > 0 ? `${((stats.netProfit / stats.totalIncome) * 100).toFixed(1)}%` : "—"],
               ].map(([k, v]) => (
-                <div key={k} className="flex items-center justify-between py-1.5 border-b border-gray-50 dark:border-gray-800/50 last:border-0">
+                <div key={k} className="flex items-center justify-between py-1.5 border-b border-gray-50 /50 last:border-0">
                   <span className="text-xs text-gray-500">{k}</span>
-                  <span className="text-xs font-semibold text-gray-900 dark:text-white tabular-nums">{v}</span>
+                  <span className="text-xs font-semibold text-gray-900  tabular-nums">{v}</span>
                 </div>
               ))}
             </div>
